@@ -29,6 +29,7 @@ export default function LoginPage() {
                   <br />
                   <input
                     className="w-full border p-2 rounded-md"
+                    type='text'
                     id="email"
                     name="email"
                     placeholder="example@email.com"
@@ -43,6 +44,7 @@ export default function LoginPage() {
                   <br />
                   <input
                     className="w-full border p-2 rounded-md"
+                    type='password'
                     id="password"
                     name="password"
                     placeholder="password"
