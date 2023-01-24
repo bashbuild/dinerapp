@@ -7,3 +7,7 @@
 body {
     @apply bg-blue-50;
 }
+
+input.larger {
+    transform: scale(1.5);
+}

@@ -4,6 +4,9 @@ export default function LoginPage() {
       <div className="bg-white rounded-tl-3xl rounded-br-3xl">
         <div className="grid md:grid-cols-2 gap-3">
           <div className="p-5">
+            <div>
+                <h1 className="text-3xl font-bold">WELCOME EVERYONE!</h1>
+            </div>
             <div className="flex justify-center">
               <img src="images/waiter.png" />
             </div>
@@ -18,7 +21,7 @@ export default function LoginPage() {
               <h1 className="text-white font-bold text-2xl">Sign In</h1>
             </div>
             <div className="flex justify-center">
-              <h1 className="text-white italic">Message</h1>
+              <h1 className="text-white italic text-green-100">Message</h1>
             </div>
             <div>
               <form>
@@ -52,16 +55,21 @@ export default function LoginPage() {
                     maxLength={32}
                   />
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center mt-3.5 mb-7">
                     <input
                         type="checkbox"
                         name='showpass'
                         id="showpass"
+                        className="larger ml-1"
                     />
-                    <label className="text-sm text-white ml-2 mb-0.5">Show password</label>
+                    <label className="text-sm text-white ml-2 mb-1">Show password</label>
                 </div>
                 <div className="my-5">
-                    <button className="w-full bg-blue-400 text-white px-3 py-2 rounded-full">Signin</button>
+                    <button 
+                        className="w-full bg-blue-400 font-bold text-white px-3 py-2 rounded-full hover:bg-blue-700"
+                    >
+                        Signin
+                    </button>
                 </div>
               </form>
             </div>
