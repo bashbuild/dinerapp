@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useSession, signOut } from "next-auth/react";
+import LoginPage from '../components/LoginPage';
 
 export default function Home() {
 
@@ -13,10 +14,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
-      <div className='flex justify-center items-center h-screen'>
-        <h1>DINERAPP</h1>
-      </div>
-      
+      {session ? (
+        <>
+          <h1>Werlcome, {session.user.name}</h1>
+        </>
+      ) : (
+        <>
+          <div className='flex justify-center items-center md:h-screen pt-5'>
+            <LoginPage />
+          </div>  
+        </>
+      )}
 
     </>
   )
