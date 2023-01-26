@@ -17,5 +17,5 @@ input.larger {
 }
 
 .btnSignin {
-    @apply bg-blue-400 text-white font-bold px-5 py-2 rounded-full;
+    @apply bg-blue-400 text-white font-bold px-6 py-2 rounded-full;
 }

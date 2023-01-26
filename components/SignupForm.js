@@ -1,12 +1,52 @@
 import { useState } from "react";
+import axios from 'axios'
 
 export default function SignupForm() {
+  const [message, setMessage] = useState("");
+  const [messageStyle, setMessageStyle] = useState("");
+  const [togglePass, setTogglePass] = useState(false);
+  const [account, setAccount] = useState({
+    name: "",
+    email: "",
+    password: "",
+  })
 
-    const [togglePass, setTogglePass] = useState(false)
+  const handleChange = ({ target: { name, value } }) => {
+    if (name === "name") {
+        setAccount({
+          ...account,
+          [name]: value.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+            letter.toUpperCase()
+          ),
+        });
+    } else {
+        setAccount({
+            ...account,
+            [name]: value
+        })
+    }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const result = await axios.post("/api/accounts", account)
+
+    if (result.data.success) {
+        setMessage(result.data.message)
+        setMessageStyle("text-green-200 italic")
+    } else {
+        setMessage(result.data.message)
+        setMessageStyle("text-red-400 italic")
+    }
+  }
 
   return (
     <>
-      <form>
+      <div className="flex justify-center">
+        <h1 className={messageStyle}>{message}</h1>
+      </div>
+      <form onSubmit={handleSubmit}>
         <div className="my-2">
           <label className="font-bold text-white text-sm" htmlFor="email">
             Name
@@ -17,9 +57,10 @@ export default function SignupForm() {
             type="text"
             id="name"
             name="name"
-            placeholder="name"
+            placeholder="Name"
             required
             maxLength={32}
+            onChange={handleChange}
           />
         </div>
         <div className="my-2">
@@ -35,6 +76,7 @@ export default function SignupForm() {
             placeholder="example@email.com"
             required
             maxLength={32}
+            onChange={handleChange}
           />
         </div>
         <div className="my-2">
@@ -50,6 +92,7 @@ export default function SignupForm() {
             placeholder="password"
             required
             maxLength={32}
+            onChange={handleChange}
           />
         </div>
         <div className="flex items-center mt-3.5 mb-7">
@@ -64,7 +107,7 @@ export default function SignupForm() {
         </div>
         <div className="my-5">
           <button className="w-full bg-orange-400 font-bold text-white px-3 py-2 rounded-full hover:bg-orange-700">
-            Signin
+            Signup
           </button>
         </div>
       </form>

@@ -4,8 +4,7 @@ import SignupForm from "./SignupForm";
 
 export default function LoginPage() {
   const [signInOrUp, setSignInOrUp] = useState(true);
-  const [message, setMessage] = useState("")
-  const [messageStyle, setMessageStyle] = useState("")
+  
 
   return (
     <>
@@ -34,9 +33,7 @@ export default function LoginPage() {
             <div className="flex justify-center">
               <h1 className="text-white font-bold text-2xl">{signInOrUp ? "Sign In" : "Sign Up"}</h1>
             </div>
-            <div className="flex justify-center">
-              <h1 className={messageStyle}>{message}</h1>
-            </div>
+            
             <div>{signInOrUp ? <SigninForm /> : <SignupForm />}</div>
           </div>
         </div>

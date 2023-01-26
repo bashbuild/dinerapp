@@ -1,12 +1,34 @@
 import { useState } from "react";
 
 export default function SigninForm() {
+  const [message, setMessage] = useState("");
+  const [messageStyle, setMessageStyle] = useState("");
+  const [togglePass, setTogglePass] = useState(false);
+  const [account, setAccount] = useState({
+    email: "",
+    password: "",
+  });
 
-    const [togglePass, setTogglePass] = useState(false)
+  const handleChange = ({ target: { name, value } }) => {
+    setAccount({
+      ...account,
+      [name]: value,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    setMessage(account.email)
+    setMessageStyle("italic text-green-100")
+  };
 
   return (
     <>
-      <form>
+      <div className="flex justify-center">
+        <h1 className={messageStyle}>{message}</h1>
+      </div>
+      <form onSubmit={handleSubmit}>
         <div className="my-2">
           <label className="font-bold text-white text-sm" htmlFor="email">
             Email
@@ -20,6 +42,7 @@ export default function SigninForm() {
             placeholder="example@email.com"
             required
             maxLength={32}
+            onChange={handleChange}
           />
         </div>
         <div className="my-2">
@@ -35,6 +58,7 @@ export default function SigninForm() {
             placeholder="password"
             required
             maxLength={32}
+            onChange={handleChange}
           />
         </div>
         <div className="flex items-center mt-3.5 mb-7">
@@ -48,11 +72,14 @@ export default function SigninForm() {
           <label className="text-white ml-2 mb-0.5">Show password</label>
         </div>
         <div className="my-5">
-          <button className="w-full bg-blue-400 font-bold text-white px-3 py-2 rounded-full hover:bg-blue-700">
+          <button 
+            type="submit"
+            className="w-full bg-blue-400 font-bold text-white px-3 py-2 rounded-full hover:bg-blue-700"
+          >
             Signin
           </button>
         </div>
       </form>
     </>
-  );
+  )
 }
