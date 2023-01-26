@@ -1,4 +1,9 @@
+import { useState } from "react";
+
 export default function SigninForm() {
+
+    const [togglePass, setTogglePass] = useState(false)
+
   return (
     <>
       <form>
@@ -24,7 +29,7 @@ export default function SigninForm() {
           <br />
           <input
             className="w-full border p-2 rounded-md"
-            type="password"
+            type={togglePass ? "text" : "password"}
             id="password"
             name="password"
             placeholder="password"
@@ -38,8 +43,9 @@ export default function SigninForm() {
             name="showpass"
             id="showpass"
             className="ml-1"
+            onChange={() => setTogglePass(!togglePass)}
           />
-          <label className="text-sm text-white ml-2 mb-1">Show password</label>
+          <label className="text-white ml-2 mb-0.5">Show password</label>
         </div>
         <div className="my-5">
           <button className="w-full bg-blue-400 font-bold text-white px-3 py-2 rounded-full hover:bg-blue-700">
