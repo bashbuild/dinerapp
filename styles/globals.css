@@ -9,5 +9,13 @@ body {
 }
 
 input.larger {
-    transform: scale(1.5);
+    transform: scale(1);
+}
+
+.btnSignup {
+    @apply bg-orange-400 text-white font-bold px-5 py-2 rounded-full;
+}
+
+.btnSignin {
+    @apply bg-blue-400 text-white font-bold px-5 py-2 rounded-full;
 }

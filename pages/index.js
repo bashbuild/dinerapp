@@ -20,7 +20,7 @@ export default function Home() {
         </>
       ) : (
         <>
-          <div className='flex justify-center items-center md:h-screen pt-5'>
+          <div className='flex justify-center items-center md:h-screen pt-5 pb-5'>
             <LoginPage />
           </div>  
         </>
