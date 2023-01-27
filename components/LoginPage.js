@@ -8,7 +8,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="bg-white rounded-tl-3xl rounded-br-3xl">
+      <div className="rounded-tl-3xl rounded-br-3xl">
         <div className="grid md:grid-cols-2 gap-3">
           <div className="flex items-center p-5">
             <div>

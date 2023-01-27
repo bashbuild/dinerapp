@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 
 export default function SignupForm() {
   const [message, setMessage] = useState("");
@@ -9,37 +9,49 @@ export default function SignupForm() {
     name: "",
     email: "",
     password: "",
-  })
+  });
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === "name") {
-        setAccount({
-          ...account,
-          [name]: value.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-            letter.toUpperCase()
-          ),
-        });
+      setAccount({
+        ...account,
+        [name]: value.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+          letter.toUpperCase()
+        ),
+      });
     } else {
-        setAccount({
-            ...account,
-            [name]: value
-        })
+      setAccount({
+        ...account,
+        [name]: value,
+      });
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const result = await axios.post("/api/accounts", account)
+    setMessage("Please wait...");
+    setMessageStyle("text-white italic mt-2");
 
-    if (result.data.success) {
-        setMessage(result.data.message)
-        setMessageStyle("text-green-200 italic")
-    } else {
-        setMessage(result.data.message)
-        setMessageStyle("text-red-400 italic")
+    try {
+      const result = await axios.post("/api/accounts", account);
+
+      if (result.data.success) {
+        setMessage(result.data.message);
+        setMessageStyle("text-green-600 italic mt-2");
+        setAccount({
+          name: "",
+          email: "",
+          password: "",
+        });
+      } else {
+        setMessage(result.data.message);
+        setMessageStyle("text-red-400 italic mt-2");
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-  }
+  };
 
   return (
     <>
@@ -61,6 +73,7 @@ export default function SignupForm() {
             required
             maxLength={32}
             onChange={handleChange}
+            value={account.name}
           />
         </div>
         <div className="my-2">
@@ -77,6 +90,7 @@ export default function SignupForm() {
             required
             maxLength={32}
             onChange={handleChange}
+            value={account.email}
           />
         </div>
         <div className="my-2">
@@ -93,6 +107,7 @@ export default function SignupForm() {
             required
             maxLength={32}
             onChange={handleChange}
+            value={account.password}
           />
         </div>
         <div className="flex items-center mt-3.5 mb-7">

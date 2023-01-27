@@ -14,9 +14,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
+      
+
       {session ? (
         <>
           <h1>Werlcome, {session.user.name}</h1>
+          <button onClick={signOut}>Signout</button>
         </>
       ) : (
         <>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 export default function SigninForm() {
@@ -16,11 +17,26 @@ export default function SigninForm() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
+    setMessage('Please wait...')
+    setMessageStyle('text-white italic mt-2')
     
-    setMessage(account.email)
-    setMessageStyle("italic text-green-100")
+    try {
+      const result = await axios.post("/api/accounts/login", account)
+
+      if (result.data.success) {
+        setMessage(result.data.message)
+        setMessageStyle("text-green-600 italic mt-2")
+      } else {
+        setMessage(result.data.message)
+        setMessageStyle("text-red-400 italic mt-2")
+      }
+
+    } catch (error) {
+      console.log(error.message)
+    }
   };
 
   return (
