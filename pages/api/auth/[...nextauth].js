@@ -23,26 +23,26 @@ export default NextAuth({
       },
       async authorize(credentials, req) {
 
-        try {
-            const [res] = await pool.query(
-              "SELECT * FROM accounts WHERE email = ?",
-              credentials.email
-            );
+        // try {
+        //     const [res] = await pool.query(
+        //       "SELECT * FROM accounts WHERE email = ?",
+        //       credentials.email
+        //     );
 
-            return {
-              name: res[0].name,
-              email: res[0].email,
-              image: res[0]
-            };
-        } catch (error) {
-            return null
-        }
-          
+        //     return {
+        //       name: res[0].name,
+        //       email: res[0].email,
+        //       image: res[0]
+        //     };
+        // } catch (error) {
+        //     return null
+        // }
+          return true
       },
     }),
     // ...add more providers here
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.SECRET,
   pages: {
     signIn: "/"
   },
